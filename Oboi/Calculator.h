@@ -6,13 +6,17 @@
 class Calculator
 {
 private:
-	// std::vector<ActiveRoom> activeRooms;
+	std::vector<ActiveRoom> activeRooms;
 
 
 public:
 	Calculator();
 
-	std::vector<ActiveRoom> activeRooms; // temp
+	void pushRoom(Room& r);
+
+	void pushWall(int id_room, int wall, Roll& roll);
+
+	//std::vector<ActiveRoom> activeRooms; // temp
 
 	float calculate();
 };

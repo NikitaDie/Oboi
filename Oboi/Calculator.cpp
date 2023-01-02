@@ -4,6 +4,16 @@ Calculator::Calculator()
 {
 }
 
+void Calculator::pushRoom(Room& r)
+{
+    this->activeRooms.push_back({ &r });
+}
+
+void Calculator::pushWall(int id_room, int wall, Roll& roll)
+{
+    this->activeRooms[id_room].activeWalls.push_back({ wall, &roll });
+}
+
 float Calculator::calculate()
 {
     std::map<std::string, float> map;

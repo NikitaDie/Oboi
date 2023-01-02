@@ -12,6 +12,4 @@ struct ActiveRoom
 {
 	Room* room;
 	std::vector<ActiveWall> activeWalls;
-	bool withCeiling {false};
-	Roll* ceilingRoll {nullptr};
 };
