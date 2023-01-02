@@ -27,8 +27,8 @@ int main()
 
     Calculator calc;
     calc.activeRooms.push_back({ &room });
-    calc.activeRooms[0].activeWalls.push_back({ &room.walls[0], &roll });
-    calc.activeRooms[0].activeWalls.push_back({ &room.walls[1], &roll });
+    calc.activeRooms[0].activeWalls.push_back({0, &roll });
+    calc.activeRooms[0].activeWalls.push_back({1, &roll });
     calc.calculate();
 
 

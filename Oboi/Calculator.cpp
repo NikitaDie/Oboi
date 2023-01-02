@@ -13,7 +13,7 @@ float Calculator::calculate()
         for (ActiveWall& aWall : aRoom.activeWalls)
         {
             std::string rollTitle = aWall.roll->getTitle();
-            float usefulArea = aWall.wall->getUsefulArea();
+            float usefulArea = aRoom.room->getWall(aWall.wall).getUsefulArea();
 
             if (map.find(rollTitle) == map.end())
             {

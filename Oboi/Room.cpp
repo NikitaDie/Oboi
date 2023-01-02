@@ -18,12 +18,16 @@ std::string Room::getTitle()
 	return title;
 }
 
+Wall& Room::getWall(int id) {
+	return this->walls[id];
+}
+
 void Room::addUseless(int wallId, float w, float h)
 {
 	walls[wallId].addUseless(w, h);
 }
 
-float Room::getUsefullWallArea()
+/*float Room::getUsefullWallArea()
 {
 	float area{};
 
@@ -31,7 +35,7 @@ float Room::getUsefullWallArea()
 		area += wall.getUsefulArea();
 
 	return area;
-}
+}*/
 
 float Room::getCeilingArea()
 {

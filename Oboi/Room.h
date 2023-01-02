@@ -11,18 +11,18 @@ private:
 	std::string title;
 	float sizeA;
 	float sizeB;
-	/*std::vector<Wall> walls;*/
+	std::vector<Wall> walls;
 
 public:
 	Room(std::string title, float a, float b, float h);
 
-	std::vector<Wall> walls; // temp
-
 	std::string getTitle();
+
+	Wall& getWall(int id);
 
 	void addUseless(int wallId, float w, float h);
 
-	float getUsefullWallArea();
+	//float getUsefullWallArea();
 	float getCeilingArea();
 };
 

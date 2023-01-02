@@ -4,7 +4,7 @@
 
 struct ActiveWall
 {
-	Wall* wall {nullptr};
+	int wall;
 	Roll* roll {nullptr};
 };
 
