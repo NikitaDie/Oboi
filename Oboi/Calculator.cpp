@@ -14,7 +14,7 @@ void Calculator::pushWall(int id_room, int wall, Roll& roll)
     this->activeRooms[id_room].activeWalls.push_back({ wall, &roll });
 }
 
-float Calculator::calculate()
+void Calculator::calculate(std::vector<Roll>& rolls)
 {
     std::map<std::string, float> map;
 
@@ -36,29 +36,15 @@ float Calculator::calculate()
         }
     }
 
-    std::cout << "test";
+    std::map <std::string, float> ::iterator it = map.begin();
 
-
-
-
-    return 0;
-
-    /*float fullPrice{};
-
-    for (ActiveRoom& aRoom : activeRooms)
-    {
-        for (ActiveWall& aWall : aRoom.activeWalls)
-        {
-            float usefulArea = aWall.wall->getUsefulArea();
-            float rollArea = aWall.roll->getArea();
-
-            float fullCount = usefulArea / rollArea;
-
-
-            fullPrice += aWall.
+    for (int i{ 0 }; i < rolls.size(); ++i) {
+        it = map.find(rolls[i].getTitle());
+        if (it == map.end()) {
+            continue;
         }
-    }*/
-   
-
+        int amount = it->second / rolls[i].getArea();
+        std::cout << it->first << " - rolls: " << amount << ", " << amount * rolls[i].getPrice() << "$" << "\n";
+    }
 
 }

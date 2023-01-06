@@ -16,8 +16,6 @@ public:
 
 	void pushWall(int id_room, int wall, Roll& roll);
 
-	//std::vector<ActiveRoom> activeRooms; // temp
-
-	float calculate();
+	void calculate(std::vector<Roll>& rolls);
 };
 

@@ -14,6 +14,8 @@ public:
 
 	void printRooms();
 
+	int numberOfRooms();
+
 	Room& getRoom(int id);
 
 

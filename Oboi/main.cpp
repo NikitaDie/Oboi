@@ -1,22 +1,18 @@
 ﻿#include <iostream>
+#include <vector>
 #include "Room.h"
 #include "Flat.h"
 #include "Calculator.h"
+#include "Conversation.h"
+
 
 int main()
 {
-    /*Room room{ "room_a", 2, 2, 3 };
-
-    room.addUseless(1, 1, 1);
-    room.addUseless(0, 2, 2);
-    room.addUseless(2, 1, 1);
-
-    std::cout << room.getUsefullWallArea();*/
-
-    /*Flat flat{};
-    flat.addRoom("room_a", 2, 2, 3);*/
 
     Flat flat{};
+    std::vector<Roll> rolls;
+    Conversation dialog;
+
     int temp_number{ 0 };
     float temp_a{ 0 };
     float temp_b{ 0 };
@@ -26,14 +22,10 @@ int main()
     std::cin >> temp_number;
 
     for (int i{ 0 }; i < temp_number; ++i) {
-        std::string name;
-        float h{0};
-        std::cout << "\n" << "Bro, Ich brauche den Name von dein Room: ";
-        std::cin >> name;
-        std::cout << "Jetzt, size of es (a, b, height): ";
-        std::cin >> temp_a >> temp_b >> h;
-        flat.addRoom(name, temp_a, temp_b, h);
+        dialog.addRoomText(flat);
     }
+
+    flat.printRooms();
 
     std::cout << "\n" << "Bruder, du bist sehr Süß" << "\n";
     std::cout << "Aber ich denke du hast auch Windows and Doors. Verstehst du? <<" << "\n";
@@ -42,39 +34,46 @@ int main()
     std::cout << "\n" << "Ok, In welchen Rooms ?" << "\n";
 
     for (int i{ 0 }; i < temp_number; ++i) {
-        int tmp_num_r{ 0 };
-        int temp_num_uslss{ 0 };
-        int temp_w_num{ 0 };
-
-        flat.printRooms();
-        std::cout << "Number of room: ";
-        std::cin >> tmp_num_r;
-        std::cout << "\n" << flat.getRoom(tmp_num_r).getTitle() << ": " << "\n";
-        std::cout << "\t" << "Wie viele Windows und Doors sind in diesem Room?: ";
-        std::cin >> temp_num_uslss;
-
-        for (int j{ 0 }; j < temp_num_uslss; ++j) {
-            int temp_w_num{ 0 };
-
-            std::cout << "\t\t" << "Wandnummer: ";
-            std::cin >> temp_w_num;
-            std::cout << "\t\t" << "Size (a, b): ";
-            std::cin >> temp_a >> temp_b;
-            flat.getRoom(i).addUseless(temp_w_num - 1, temp_a, temp_b);
-        }
+        dialog.addUselessText(flat);
     }
 
 
+    std::cout << "\n" << "Great Job! Aber ich auch brauche also your papers" << "\n";
+    std::cout << "How many different kinds of them you want to use: ";
+    std::cin >> temp_number;
+    temp_number = dialog.checkValue(temp_number, 0);
 
+    
 
-    Roll roll{ "vasia", 1000, 1, 10 };
+    for (int i{ 0 }; i < temp_number; ++i) {
+        dialog.addPapersText(rolls);
+    }
+
+    //Roll roll{ "vasia", 1000, 1, 10 };
 
     Calculator calc;
-    calc.pushRoom(flat.getRoom(0));
-    calc.pushWall(0, 0, roll);
-    calc.pushWall(0, 1, roll);
 
-    calc.calculate();
+
+ /*   while (true) {
+        int tmp;
+        std::cin >> tmp;
+        dialog.checkValue(tmp, 0, 4);
+        switch (tmp)
+        {
+        case 0:
+            break; // выбрать комнату
+        case 1:
+            break; // выбрать стену
+        case 2:
+            break; // посмотреть комнаты с обоями
+        case 3:
+            break; // получить цену
+        }
+    }*/
+
+    dialog.chooseWand(flat, calc, rolls);
+
+    calc.calculate(rolls);
 
 
 
