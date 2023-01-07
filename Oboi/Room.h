@@ -22,7 +22,5 @@ public:
 
 	void addUseless(int wallId, float w, float h);
 
-	//float getUsefullWallArea();
-	float getCeilingArea();
 };
 

@@ -11,7 +11,12 @@ void Calculator::pushRoom(Room& r)
 
 void Calculator::pushWall(int id_room, int wall, Roll& roll)
 {
-    this->activeRooms[id_room].activeWalls.push_back({ wall, &roll });
+    if (this->activeRooms[id_room].activeWalls.size() > wall) { //check if already exsist
+        this->activeRooms[id_room].activeWalls[wall].roll = &roll;
+    }
+    else {
+        this->activeRooms[id_room].activeWalls.push_back({ wall, &roll });
+    }
 }
 
 void Calculator::calculate(std::vector<Roll>& rolls)
@@ -37,6 +42,8 @@ void Calculator::calculate(std::vector<Roll>& rolls)
     }
 
     std::map <std::string, float> ::iterator it = map.begin();
+
+    std::cout << "\n";
 
     for (int i{ 0 }; i < rolls.size(); ++i) {
         it = map.find(rolls[i].getTitle());

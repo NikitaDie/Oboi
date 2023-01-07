@@ -27,17 +27,4 @@ void Room::addUseless(int wallId, float w, float h)
 	walls[wallId].addUseless(w, h);
 }
 
-/*float Room::getUsefullWallArea()
-{
-	float area{};
 
-	for (Wall& wall : walls)
-		area += wall.getUsefulArea();
-
-	return area;
-}*/
-
-float Room::getCeilingArea()
-{
-	return sizeA * sizeB;
-}

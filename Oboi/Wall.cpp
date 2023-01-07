@@ -5,9 +5,14 @@ Wall::Wall(float w, float h):
 	height {h}
 {}
 
-void Wall::addUseless(float w, float h)
+float Wall::getWidth()
 {
-	uselessObjects.push_back(Useless{ w, h });
+	return this->width;
+}
+
+float Wall::getHeight()
+{
+	return this->height;
 }
 
 float Wall::getUsefulArea()
@@ -18,4 +23,9 @@ float Wall::getUsefulArea()
 		area -= useless.getArea();
 
 	return area;
+}
+
+void Wall::addUseless(float w, float h)
+{
+	uselessObjects.push_back(Useless{ w, h });
 }

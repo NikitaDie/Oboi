@@ -44,6 +44,30 @@ int Conversation::checkValue(int value, int min_d, int max_d) {
     }
 }
 
+void Conversation::checkValue(float& value1, float& value2, int min_d1, int max_d1, int min_d2, int max_d2) {
+    if (value1 > max_d1 or value1 < min_d1 or value2 > max_d2 or value2 < min_d2) {
+        std::cout << "\n" << "Bro, Nicht gut :(" << "\n";
+        std::cout << "Try again: " << "\n\n";
+        std::cin >> value1 >> value2;
+        checkValue(value1, value2, min_d1, max_d1, min_d2, max_d2);
+    }
+    else {
+        return;
+    }
+}
+
+float Conversation::checkValue(float value, int min_d, int max_d) {
+    if (value > max_d or value < min_d) {
+        std::cout << "\n" << "Bro, Nicht gut :(" << "\n";
+        std::cout << "Try again: " << "\n\n";
+        std::cin >> value;
+        checkValue(value, min_d, max_d);
+    }
+    else {
+        return value;
+    }
+}
+
 void Conversation::addUselessText(Flat& flat)
 {
     int tmp_num_r{ 0 };
@@ -68,8 +92,10 @@ void Conversation::addUselessText(Flat& flat)
         std::cin >> temp_w_num;
         temp_w_num = checkValue(temp_w_num, 0, 5);
 
-        std::cout << "\t\t" << "Size (a, b): ";
+        std::cout << "\t\t" << "Size (a, b): "; 
         std::cin >> temp_a >> temp_b;
+        checkValue(temp_a, temp_b, 0, flat.getRoom(tmp_num_r).getWall(temp_w_num - 1).getHeight(), 0, flat.getRoom(tmp_num_r).getWall(temp_w_num - 1).getWidth());
+
         flat.getRoom(tmp_num_r).addUseless(temp_w_num - 1, temp_a, temp_b);
     }
 }
@@ -82,10 +108,11 @@ void Conversation::addPapersText(std::vector<Roll>& rolls)
     std::cin >> name;
     std::cout << "\n" << "Price per roll: ";
     std::cin >> price;
-    price = checkValue(price, 0, 2000000000);
+    price = checkValue(price, 0, MAX_ROLL_PRICE);
 
     std::cout << "Jetzt, size of es (weidth and height): ";
     std::cin >> temp_a >> temp_b;
+    checkValue(temp_a, temp_b, MIN_ROLL_SIZE, MAX_ROLL_PRICE, MIN_ROLL_SIZE, MAX_ROLL_PRICE);
 
     rolls.push_back({ name, price, temp_a, temp_b });
 }
@@ -103,12 +130,12 @@ void  Conversation::chooseWand(Flat& flat, Calculator& calc, std::vector<Roll>& 
         std::cout << "\n" << "Welchen Room ? ((-1) - exit)" << "\n";
         std::cout << "id: ";
         std::cin >> tmp_r;
-        //check   
-
+       
         if (tmp_r == -1) {
             return;
         }
         else {
+            tmp_r = checkValue(tmp_r, 0, flat.numberOfRooms() - 1); //room id check
             calc.pushRoom(flat.getRoom(tmp_r));
 
             while (true) {

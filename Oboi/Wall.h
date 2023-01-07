@@ -13,8 +13,13 @@ private:
 public:
 	Wall(float w, float h);
 
-	void addUseless(float w, float h);
+	float getWidth();
+
+	float getHeight();
 
 	float getUsefulArea();
+
+	void addUseless(float w, float h);
+
 };
 
