@@ -15,6 +15,8 @@ private:
 	float temp_a{ 0 };
 	float temp_b{ 0 };
 
+	void addRoomTextSizes(Flat& flat, std::string name);
+
 public:
 
 	int checkValue(int value, int min_d, int max_d = 100);
@@ -22,8 +24,6 @@ public:
 	void checkValue(float& value1, float& value2, int min_d1, int max_d1, int min_d2, int max_d2);
 
 	float checkValue(float value, int min_d, int max_d = 100);
-
-	void addRoomTextSizes(Flat& flat, std::string name);
 
 	void addRoomText(Flat& flat);
 

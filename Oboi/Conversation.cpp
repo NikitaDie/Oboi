@@ -77,7 +77,7 @@ void Conversation::addUselessText(Flat& flat)
     flat.printRooms();
     std::cout << "Number of room: ";
     std::cin >> tmp_num_r;
-    tmp_num_r = checkValue(tmp_num_r, 0, flat.numberOfRooms());
+    tmp_num_r = checkValue(tmp_num_r, 0, flat.numberOfRooms() - 1);
 
     std::cout << "\n" << flat.getRoom(tmp_num_r).getTitle() << ": " << "\n";
     std::cout << "\t" << "Wie viele Windows und Doors sind in diesem Room?: ";
